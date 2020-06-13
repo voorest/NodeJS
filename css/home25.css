@@ -1,0 +1,36 @@
+.diagrams{
+  display: flex;
+  align-items: flex-end;
+  min-height: 300px;
+  outline: 1px solid #eee;
+}
+.d-item:not(:last-child){
+  margin-right: 10px;
+}
+.d-item, .item{
+  position: relative;
+  text-shadow: 1px 1px 2px #000;
+}
+.range-wrap{
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 20px;
+}
+.d-range{
+  position: absolute;
+  top: 100%;
+  max-width: 100%;
+  left: 0;
+  width: 100%;
+}
+.text-id{
+  position: absolute;
+  top:50%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  font-weight: bold;
+  font-size: 14px;
+}

@@ -28,20 +28,40 @@ app.listen(port, function () { // говорим на каком порту за
 // POST method route
 
 app.post('/set-user-info', function (req, res) {
-	const { login, password, secretKey} = req.body;
-	var newUser = JSON.stringify(req.body);
 
-	fs.readFile('users.json', 'utf-8', function(req, users) {
+	req.body.login = 'Valera';
+	req.body.password = '123';
+	req.body.secretKey = '@gh5';
 
-		if (newUser && secretKey === JSON.parse(users).secretKey){
-			res.status(301).send("Пользователь уже существует");
-		}	else {
-			console.log (newUser,users)
-			fs.writeFile('users.json',newUser,function() {
-				console.log ('Успешно записанный файл')
-				res.status(200).send("ok");
-			});
+	let filePath = './users.json';
+	let response = []
+	response = req.body;
+	const jsonString = JSON.stringify(response);
+
+	try {
+	  if (fs.existsSync(filePath)) {
+			console.log('Читаем файл ', filePath);
+			var contents = fs.readFileSync(filePath, 'utf8');
+			var file = JSON.parse(contents);
+			if (file.login == 'Valera' && file.secretKey == '@gh5') {
+				console.log('Такой пользователь '+file.login+' существует. 301');
+				res.status(301).send(response);
+			} else {
+				addUser();
+			}
+	  } else {
+			console.log('Файл не существует');
+			addUser();
 		}
+	} catch(err) {
+	  console.error(err)
+	}
 
-	})
-})
+	function addUser() {
+		fs.writeFile(filePath, jsonString, (err) => {
+				if (err) console.log('Error writing file:', err)
+				res.status(200).send('OK');
+		})
+	}
+
+});

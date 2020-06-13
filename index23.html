@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hillel homework #23</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <header></header>
+  <main>
+    <div class="wrap">
+      <h1>Hillel homework #23</h1>
+      <p>Framework VUE.JS</p><br><br>
+      <div id="app">
+        <span v-if="hello">Сейчас меня видно<br></span>
+        {{ hello }}<br>
+        {{ isMarried ? 'Женат' : 'Не женат' }}<br>
+        <div v-html="html"></div>
+        <input type="text" v-bind:value="hello">
+        <button v-bind:disabled="hello.length > 5">Sign in</button>
+        {{ hello.lenth }}<br>
+        <!-- v-bind: - короткая запись ":"-->
+
+        <br>
+        <hr>
+
+        <input type="text" v-model:value="inputText">
+        <button v-bind:disabled="inputText.length < 5">Sign in</button>
+        <input type="text" v-bind:value="inputText">
+        {{ inputText }}
+
+        <br>
+        <hr>
+
+        <div v-if="isShow">isShow true</div>
+        <div v-else="isShow">isShow false</div>
+        <!-- v-if удаляет элементы из ДОМ-->
+
+        <br>
+        <hr>
+
+        <div v-show="isShow">isShow true</div>
+        <div v-show="!isShow">isShow false</div>
+        <!-- v-show НЕ удаляет элементы из ДОМ, а делает их display:none-->
+
+        <br>
+        <hr>
+
+        <ul v-for="item in fruits">
+          <li>{{ item }}</li>
+        </ul>
+
+        <br>
+        <hr>
+
+        <ul v-for="user in users" v-if="age > 18">
+          <li>{{ users.name }}</li>
+        </ul>
+
+
+        <br>
+        <hr>
+        <input type="text" v-model="login" placeholder="login"><br>
+        <input type="number" v-model="age"placeholder="age"><br>
+        <button v-on:click="f_click">click</button>
+        <button v-on:mousemove="f_move">move</button>
+        <!-- v-on: - короткая запись "@"-->
+
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+<script src="js/home23.js"></script>
+</html>
